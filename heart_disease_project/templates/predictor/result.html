@@ -1,0 +1,108 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prediction Result</title>
+    <style>
+        img{
+            position:relative;
+            position:absolute;
+            height:100%;
+            width:100%;
+        }
+        .container{
+            
+            position:absolute;
+        }
+    p{
+        position:relative;
+        left:200px;
+        top:150px;
+        font-family: 'Nunito', sans-serif;
+       font-size:4em;
+    }
+    h2{
+        position:relative;
+        left:20px;
+        color:whitesmoke;
+        font-size:2em;
+        font-family: 'Montserrat', sans-serif;
+    }
+    .sad-icon {
+            font-size: 50px;
+            color: #ff4d4d;
+            display: inline-block;
+            animation: shake 0.8s infinite alternate;
+        }
+
+        /* Emergency Icon (Flashing Effect) */
+        .emergency-icon {
+            font-size: 40px;
+            color: red;
+            animation: flash 1s infinite alternate;
+        }
+
+        /* Happy Icon */
+        .happy-icon {
+            font-size: 40px;
+            color: #00cc44;
+        }
+
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+            100% { transform: translateX(5px); }
+        }
+
+        @keyframes flash {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+    button{
+        position:relative;
+        left:50px;
+        top:350px;
+        padding:20px;
+        border-radius:20px;
+        background-color:#739AAC;
+        color:azure;
+        font-size:1em;
+        border:2px solid azure;
+        font-family: 'Poppins', sans-serif;
+    }
+    button:hover{
+        background-color:azure;
+        color:#739AAC;
+    }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Montserrat:wght@400;700&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <img src="{% static "images/gpt.jpg" %}">
+    <div class="container">
+    <h2>Prediction Result</h2>
+    <p>
+        {% if result == "Heart Disease Detected" %}
+            <i class="fa-solid fa-triangle-exclamation emergency-icon"></i>
+            <i class="fa-solid fa-face-frown sad-icon"></i>  
+            <span style="color: #ff4d4d;">High Risk of Heart Disease Detected!</span>  
+            <i class="fa-solid fa-face-frown sad-icon"></i>
+            <i class="fa-solid fa-triangle-exclamation emergency-icon"></i>
+        {% else %}
+            <i class="fa-solid fa-face-smile happy-icon"></i>  
+            <span style="color: #00aa44;">No Heart Disease Detected</span>  
+            <i class="fa-solid fa-face-smile happy-icon"></i>
+        {% endif %}
+    </p>
+        
+    <a href="{% url 'home' %}"><button>Try Again</button></a>
+    
+    </div>
+</body>
+</html>

@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Heart Disease Predictor</title>
+    <style>
+        img{
+            position:relative;
+            position:absolute;
+            width:100%;
+            height:100%;
+        }
+        .container{
+            position:absolute;
+            left:200px;
+            top:100px;
+            }
+        label{
+            
+            margin:20px;
+            color:lightskyblue; /* Cyan for labels */
+            font-size: 20px;
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            }
+
+        h2{
+            color:azure;
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size:3em;
+            font-weight: bold;
+            
+        }
+        
+        div{
+            margin:30px;
+            
+        }
+        input,select{
+            background-color:white; /* White input fields */
+            color:chocolate;/* Black text */
+            border: 3px solid lightskyblue; /* Cyan border */
+            padding: 5px;
+            border-radius:5px;
+        }
+        button {
+    background-color:darkblue; /* Neon Cyan */
+    color: ghostwhite; /* Black text */
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius:50%;
+}
+button:hover {
+    background-color:whitesmoke; /* Gold on hover */
+    color:darkblue;
+}
+
+
+
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+</head>
+<body>
+    <img src="{% static "images/heart.jpg" %}">
+    <div class="container">
+    <h2>Heart Disease Prediction</h2>
+    <form action="{% url 'predict' %}" method="post">
+        {% csrf_token %}
+        <div id="one">
+        <label>Age:</label>
+        <input type="number" name="age" required><br>
+        </div>
+        <div>
+
+        <label>Gender:</label>
+        <select name="gender">
+            <option value="1">Male</option>
+            <option value="0">Female</option>
+        </select><br>
+          </div>
+          <div>
+        <label>Pulse Rate:</label>
+        <input type="number" name="pulse" required><br>
+          </div>
+          <div>
+        <label>Heart Beat Rate:</label>
+        <input type="number" name="heart_rate" required><br>
+        </div>
+        <div>
+        <label>Weight (kg):</label>
+        <input type="number" name="weight" required><br>
+        </div>
+        <button type="submit">Predict</button>
+    </form>
+     
+    <i class="fa fa-heart fa-beat" style="color:red;font-size:150px;position:absolute;left:950px;top:160px" ></i>
+
+    </div>
+</body>
+</html>
